@@ -1,20 +1,28 @@
 import React, { Component } from 'react'
 export default class App extends Component {
   state = {
-       squares:[...Array(8).keys()],
-       count: 0
      
+      squares: Array(9).fill(null),
+       count: 0
   }
+
   handleClick = e => {
     let data = e.target.getAttribute('data-index');
-    this.state.squares[data] = (this.state.count % 2 === 0 ) ? 'X' : 'O';
-    this.setState({
-      squares: this.state.squares
-    })
-    this.setState({
-      count: this.state.count + 1
-    })
-    
+    if(this.state.squares[data] !== ('X' || 'O'))
+    {
+      // if(this.state.count % 2 === 0) {
+      //   this.setState({
+      //     squares
+      //   })
+      // }
+      this.state.squares[data] = (this.state.count % 2 === 0  ) ? 'X' : 'O';
+      this.setState({
+        squares: this.state.squares
+      });
+      this.setState({
+        count: this.state.count + 1
+      })
+    }
   };
 
    divStyle = {
@@ -36,10 +44,9 @@ export default class App extends Component {
     const {squares} = this.state
     return (
       <div 
-      style={
-        this.divStyle
-  }
-      >
+        style={
+          this.divStyle
+      }>
         {squares.map((square, index)=> {
           return (
             <div key={index} 
@@ -47,7 +54,7 @@ export default class App extends Component {
               onClick={this.handleClick}
               data-index={index}
               className=''>
-              {squares[index]}
+              {square}
             </div>
           )
         })}
