@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 export default class App extends Component {
   state = {
-     
       squares: Array(9).fill(null),
        count: 0
   }
@@ -10,16 +9,11 @@ export default class App extends Component {
     let data = e.target.getAttribute('data-index');
     if(this.state.squares[data] !== ('X' || 'O'))
     {
-      // if(this.state.count % 2 === 0) {
-      //   this.setState({
-      //     squares
-      //   })
-      // }
-      this.state.squares[data] = (this.state.count % 2 === 0  ) ? 'X' : 'O';
+      let list = this.state.squares;
+      list[data] = (this.state.count % 2 === 0  ) ? 'X' : 'O';
+
       this.setState({
-        squares: this.state.squares
-      });
-      this.setState({
+        squares: list,
         count: this.state.count + 1
       })
     }
